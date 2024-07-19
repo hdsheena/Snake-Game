@@ -51,6 +51,8 @@ function update() {
 
 
 function draw() {
+  const gameBoard = document.getElementById("game-board");
+
   gameBoard.innerHTML = "";
   drawSnake(gameBoard);
   drawFood(gameBoard);
