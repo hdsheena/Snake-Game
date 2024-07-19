@@ -1,0 +1,149 @@
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column; /* Arrange children in a column */
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  background: linear-gradient(to bottom right, #ff6f00, #ff5722); /* Fire-like gradient */
+  font-family: 'Press Start 2P', cursive; /* Classic pixel font */
+}
+
+#game-board {
+  background: rgba(255, 255, 255, 0.4); /* Slightly more transparent */
+  margin-top: -80px;
+  width: 95%;
+  height: calc(95% - 60px); /* Adjust height to account for footer */
+  display: grid;
+  grid-template-rows: repeat(35, 1fr);
+  grid-template-columns: repeat(35, 1fr);
+  border: 5px solid #ff3d00; /* Fiery orange border */
+  border-radius: 12px; /* Rounded corners */
+  transition: none;
+  box-shadow: 0 0 20px rgba(255, 69, 0, 0.7); /* Fiery shadow */
+}
+
+.snake {
+  background: linear-gradient(to bottom, #00aaff, #0066cc); /* Water-like gradient */
+  border-radius: 0.5vmin;
+  box-shadow: 0 0 6px rgba(0, 0, 255, 0.5); /* Water reflection effect */
+}
+
+.snake::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2); /* Light reflection */
+  border-radius: 0.5vmin;
+  box-shadow: inset 0 0 10px rgba(0, 0, 255, 0.5); /* Inner glow effect */
+}
+
+.food {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.food::before {
+  content: "🔥"; /* Fire emoji */
+  font-size: 3vmin; /* Larger size for emphasis */
+  color: #ffeb3b; /* Bright yellow to simulate flame */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Darker overlay */
+  display: none; /* Hide the popup by default */
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.5s ease-in-out; /* Fade-in effect */
+}
+
+.popup-content {
+  background: #ff6f00; /* Fiery orange */
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  color: #fff; /* White text for contrast */
+  box-shadow: 0 0 10px rgba(255, 69, 0, 0.8); /* Fiery shadow */
+}
+
+#restart-button {
+  background: #ff5722; /* Fiery red */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease; /* Smooth transition */
+}
+
+#restart-button:hover {
+  background: #d84315; /* Darker red on hover */
+}
+
+/* Fade-in animation for the popup */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+footer {
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-family: 'Press Start 2P', cursive; /* Match the game font */
+  z-index: 1000; /* Ensure it is above other content */
+}
+
+footer p {
+  margin: 5px 0;
+}
+
+footer a {
+  color: #ffeb3b; /* Base bright yellow color */
+  text-decoration: none;
+  background: linear-gradient(45deg, #ff6f00, #ff5722, #ffeb3b);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: flameEffect 2s infinite linear;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.7), 0 0 15px rgba(255, 69, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.7);
+}
+
+@keyframes flameEffect {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
